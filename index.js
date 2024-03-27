@@ -60,6 +60,15 @@ app.put('/beers/:id', (req, res) =>{
   res.json({ message: "Beer update successfully" });
 });
 
+app.delete('/beers/:id', (req, res) =>{
+  const data = readData();
+  const id = parseInt(req.params.id);
+  const beerIndex = data.beers.findIndex((beer) => beer.id === id);
+  data.beers.splice(beerIndex, 1);
+  writeData(data);
+  res.json({ message: "Beer delete successfully" });
+})
+
 app.listen(3000, () => {
   console.log('server listening on port 3000');
 })
