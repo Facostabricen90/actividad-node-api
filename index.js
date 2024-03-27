@@ -59,6 +59,7 @@ app.put('/beers/:id', (req, res) =>{
     ...data.beers[beerIndex],
     ...body,
   };
+  writeData(data);
   res.json({ message: "Beer update successfully" });
 });
 
