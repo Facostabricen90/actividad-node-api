@@ -1,0 +1,22 @@
+{
+  "name": "actividad-node-api",
+  "version": "1.0.0",
+  "description": "Api with node and express from beers",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "Frank Acosta",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
