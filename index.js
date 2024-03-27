@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from "body-parser";
 import { readData, writeData } from './src/file.js';
+import { buildPDF } from "./src/libs/pdfKit.js"
 
 const app = express();
 app.use(bodyParser.json());
@@ -54,6 +55,19 @@ app.delete('/beers/:id', (req, res) =>{
   writeData(data, "./db.json");
   res.json({ message: "Beer delete successfully" });
 })
+
+app.get('/beersPDF', (req, res) => {
+  res.writeHead(200, {
+    "Content-Type": "application/pdf",
+    "Content-Disposition": "attachment; filename=beersPDF.pdf"
+  });
+
+  buildPDF(
+    "./db.json",
+    (data) => res.write(data),
+    () => res.end()
+  );
+});
 
 app.listen(3000, () => {
   console.log('server listening on port 3000');
