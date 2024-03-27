@@ -1,7 +1,9 @@
 import express from 'express';
-import fs from 'fs'
+import fs from 'fs';
+import bodyParser from "body-parser";
 
 const app = express();
+app.use(bodyParser.json());
 
 const readData = () => {
   try{
@@ -40,13 +42,13 @@ app.post('/beers', (req, res) =>{
   const data = readData();
   const body = req.body;
   const newBeer = {
-    id: data.beers.legth + 1,
+    id: data.beers.length + 1,
     ...body,
   };
   data.beers.push(newBeer);
   writeData(data);
   res.json(newBeer);
-})
+});
 
 app.put('/beers/:id', (req, res) =>{
   const data = readData();
@@ -56,7 +58,7 @@ app.put('/beers/:id', (req, res) =>{
   data.beers[beerIndex] = { 
     ...data.beers[beerIndex],
     ...body,
-  })
+  };
   res.json({ message: "Beer update successfully" });
 });
 
