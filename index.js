@@ -1,57 +1,40 @@
 import express from 'express';
-import fs from 'fs';
 import bodyParser from "body-parser";
+import { readData, writeData } from './src/file.js';
 
 const app = express();
 app.use(bodyParser.json());
-
-const readData = () => {
-  try{
-    const data = fs.readFileSync("./db.json");
-    return JSON.parse(data);
-  } catch (error) {
-    console.log(error);
-  }
- };
-
-const writeData = (data) => {
-  try{
-    fs.writeFileSync("./db.json", JSON.stringify(data));
-  } catch (error) {
-    console.log(error);
-  }
- };
 
 app.get('/', (req, res) =>{
   res.send("welcome to my first API with Node Js!!");
 })
 
 app.get('/beers', (req, res) =>{
-  const data = readData();
+  const data = readData("./db.json");
   res.json(data.beers);
 })
 
 app.get('/beers/:id', (req, res) =>{
-  const data = readData();
+  const data = readData("./db.json");
   const id = parseInt(req.params.id);
   const beer = data.beers.find((beer) => beer.id === id);
   res.json(beer);
 })
 
 app.post('/beers', (req, res) =>{
-  const data = readData();
+  const data = readData("./db.json");
   const body = req.body;
   const newBeer = {
     id: data.beers.length + 1,
     ...body,
   };
   data.beers.push(newBeer);
-  writeData(data);
+  writeData(data, "./db.json");
   res.json(newBeer);
 });
 
 app.put('/beers/:id', (req, res) =>{
-  const data = readData();
+  const data = readData("./db.json");
   const body = req.body;
   const id = parseInt(req.params.id);
   const beerIndex = data.beers.findIndex((beer) => beer.id === id);
@@ -59,16 +42,16 @@ app.put('/beers/:id', (req, res) =>{
     ...data.beers[beerIndex],
     ...body,
   };
-  writeData(data);
+  writeData(data, "./db.json");
   res.json({ message: "Beer update successfully" });
 });
 
 app.delete('/beers/:id', (req, res) =>{
-  const data = readData();
+  const data = readData("./db.json");
   const id = parseInt(req.params.id);
   const beerIndex = data.beers.findIndex((beer) => beer.id === id);
   data.beers.splice(beerIndex, 1);
-  writeData(data);
+  writeData(data, "./db.json");
   res.json({ message: "Beer delete successfully" });
 })
 

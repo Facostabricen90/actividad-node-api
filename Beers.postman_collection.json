@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "b118d252-1602-4cca-8bc6-1cb2f11223db",
+		"name": "Beers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16497547"
+	},
+	"item": [
+		{
+			"name": "GetBeers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/beers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"beers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBeerById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/beers/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"beers",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddNewBeer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Club Colombia - Roja\",\r\n    \"descripcion\": \"Mayermente en su representativa presentacion negra\",\r\n    \"alcohol\": 9.05,\r\n    \"company\": \"Bavaria\",\r\n    \"category\": \"b\",\r\n    \"disponibility\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/beers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"beers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModifyBeer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/beers/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"beers",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBeer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/beers/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"beers",
+						"7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
