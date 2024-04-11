@@ -16,3 +16,16 @@ export function writeData(data, path) {
     console.log(error);
   }
  };
+
+export function readFileSync(path){    
+  const data=fs.readFileSync(path);
+  const carros=JSON.parse(data).carros;
+  return carros;   }
+
+
+
+export function escribirArchivo(path, info){ 
+  const data=JSON.stringify({'carros':info});
+  fs.writeFileSync(path, data);
+
+}
